@@ -2,6 +2,7 @@ package creational.abstract_factory.standard_implementation;
 
 import creational.abstract_factory.standard_implementation.csharp_toolkit.CSharpBuildToolkit;
 import creational.abstract_factory.standard_implementation.csharp_toolkit.GenericCSharpBuildToolkit;
+import creational.abstract_factory.standard_implementation.java_toolkit.JavaBuildToolkit;
 
 public class Client {
 
@@ -11,6 +12,9 @@ public class Client {
 
         System.out.println("Generic implementation:");
         testGenericImplementation();
+
+        System.out.println("Prototype implementation:");
+        testPrototypeImplementation();
 
 
     }
@@ -40,5 +44,18 @@ public class Client {
         System.out.println(compiler.toString());
         System.out.println(linker.toString());
 
+    }
+
+    private static void testPrototypeImplementation() {
+        AbstractBuildToolkit toolkit = JavaBuildToolkit.INSTANCE;
+        AbstractLexer lexer = toolkit.createLexer();
+        AbstractParser parser = toolkit.createParser();
+        AbstractCompiler compiler = toolkit.createCompiler();
+        AbstractLinker linker = toolkit.createLinker();
+
+        System.out.println(lexer.toString());
+        System.out.println(parser.toString());
+        System.out.println(compiler.toString());
+        System.out.println(linker.toString());
     }
 }
